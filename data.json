@@ -1,0 +1,19 @@
+
+[
+  {
+    "username": "RyuSF",
+    "email": "ryu@streetfighters.com",
+    "password": "hadouken"
+  },
+  {
+    "username": "KenSF",
+    "email": "ken@streetfighters.com",
+    "password": "shoryuken"
+  },
+  {
+    "username": "Admin",
+    "email": "admin@sf.com",
+    "password": "supersecret123"
+  }
+]
+

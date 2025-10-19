@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Street-Fighters</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================================================= */
+        /* === BODY & HEADER STYLES (COPIED FROM INDEX.HTML) === */
+        /* ================================================= */
+
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif; /* Unified Font */
+            background: url("bg2.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background: #222;
+            color: #eee;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(255,140,0,0.8);
+        }
+
+        header {
+            background: rgba(0,0,0,0.8);
+            padding: 1rem;
+            box-shadow: 0 0 15px #ff4757;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header h1 img {
+            height: 34px;
+            border-radius: 6px;
+            margin-right: 8px;
+        }
+
+        nav {
+            display: none;
+            flex-direction: column;
+            background: rgba(0,0,0,0.9);
+            position: absolute;
+            top: 70px; /* Adjusted to match index.html style */
+            right: 10px;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 0 15px #ff4757;
+            min-width: 180px;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 8px 0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4757;
+            text-shadow: 0 0 8px #ff4757;
+        }
+
+        nav a.active {
+            color: #ff4757;
+            text-shadow: 0 0 6px #ff4757;
+        }
+
+        nav.active {
+            display: flex;
+        }
+
+        .menu-toggle {
+            font-size: 1.8rem; /* Adjusted to match index.html style */
+            cursor: pointer;
+            color: #fff;
+            user-select: none;
+        }
+        
+        /* Dark Mode Button Styles */
+        .dark-toggle {
+            margin-top: 10px;
+            background: #ff4757;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+            display: block;
+        }
+        .dark-toggle:hover {
+            background: #ff6b81;
+        }
+
+        @media(min-width:800px) {
+            nav {
+                display: flex !important;
+                position: static;
+                flex-direction: row;
+                background: transparent;
+                gap: 14px;
+                padding: 0;
+                box-shadow: none;
+            }
+            .menu-toggle {
+                display: none;
+            }
+             .dark-toggle {
+                margin-top: 0;
+            }
+        }
+
+        /* ================================================= */
+        /* === REGISTER FORM STYLES (ORIGINAL) === */
+        /* ================================================= */
+        .register-section {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgba(20, 20, 20, 0.85);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px #ff4757;
+        }
+
+        .register-section h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        button, .pay-now-btn {
+            background: #ff4757;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, .pay-now-btn:hover {
+            background: #ff6b81;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .qr-section img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #ff4757;
+            border-radius: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1 class="gradient-text"><img src="LOGO.jpg" alt="Logo"> Street Fighters</h1>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    
+    <nav id="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="rules.html">Rules</a>
+        <a href="register.html" class="active">Register</a>
+        <a href="members.html">Members</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="community.html">Community</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </nav>
+</header>
+
+<section class="register-section">
+    <h1>Register Your Squad</h1>
+    <form id="registerForm">
+        <label>Squad Name:</label>
+        <input type="text" id="squad" required>
+
+        <label>Game Option:</label>
+        <select id="gameOption" required>
+            <option value="">Select</option>
+            <option value="SOLO-15">Solo ₹15</option>
+            <option value="BR-200">Battle Royale ₹200</option>
+            <option value="CS-100">Clash Squad ₹100</option>
+        </select>
+
+        <div id="soloBlock" class="hidden">
+            <label>Player Name:</label>
+            <input type="text" id="playerName">
+        </div>
+
+        <div id="teamBlock">
+            <label>Teammate 1:</label><input type="text" id="tm1">
+            <label>Teammate 2:</label><input type="text" id="tm2">
+            <label>Teammate 3:</label><input type="text" id="tm3">
+            <label>Teammate 4:</label><input type="text" id="tm4">
+        </div>
+
+        <label>Email:</label>
+        <input type="email" id="email" required>
+
+        <label>Phone:</label>
+        <input type="tel" id="phone" required>
+
+        <div class="qr-section">
+            <p id="qrText">Scan & Pay:</p>
+            <img src="QR1.jpg" alt="QR" id="qrImg"><br>
+            <a href="#" id="payNowBtn" class="pay-now-btn">Pay Now</a>
+        </div>
+
+        <label>UTR Number:</label>
+        <input type="text" id="utr" required placeholder="Enter UTR">
+
+        <button type="submit" id="submitBtn" disabled>Submit Registration</button>
+    </form>
+</section>
+
+<script>
+    // **********************************************
+    // ** Menu and Dark Mode Logic (Copied) **
+    // **********************************************
+
+    function toggleMenu(){
+        document.getElementById('menu').classList.toggle('active');
+    }
+
+    function toggleDarkMode(){
+        document.body.classList.toggle('dark');
+        const btn = document.querySelector('.dark-toggle');
+        btn.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    }
+
+
+    // **********************************************
+    // ** Original Registration Logic **
+    // **********************************************
+    const gameSelect = document.getElementById('gameOption');
+    const soloBlock = document.getElementById('soloBlock');
+    const teamBlock = document.getElementById('teamBlock');
+    const utrInput = document.getElementById('utr');
+    const submitBtn = document.getElementById('submitBtn');
+    const payBtn = document.getElementById('payNowBtn');
+    const qrImg = document.getElementById('qrImg');
+    const qrText = document.getElementById('qrText');
+
+    const gameMap = {
+        "SOLO-15": { amt: 15, qr: "QR1.jpg" },
+        "BR-200": { amt: 200, qr: "QR1.jpg" },
+        "CS-100": { amt: 100, qr: "QR1.jpg" }
+    };
+
+    gameSelect.addEventListener("change", () => {
+        let val = gameSelect.value;
+        
+        // Toggle Solo/Team fields
+        if (val === "SOLO-15") { 
+            soloBlock.classList.remove("hidden"); 
+            teamBlock.classList.add("hidden"); 
+        } else { 
+            soloBlock.classList.add("hidden"); 
+            teamBlock.classList.remove("hidden"); 
+        }
+
+        // Update QR/Payment Info
+        if (gameMap[val]) {
+            let data = gameMap[val];
+            qrImg.src = data.qr;
+            qrText.innerText = "Pay ₹" + data.amt + " via UPI:";
+            
+            // Note: UPI ID hardcoded here is based on your previous code
+            let upi = `upi://pay?pa=8780467849@fam&pn=StreetFighters&am=${data.amt}&cu=INR`;
+            payBtn.href = upi;
+
+        } else {
+            // Default state
+            qrImg.src = "QR1.jpg"; 
+            qrText.innerText = "Scan & Pay:";
+            payBtn.href = "#";
+        }
+    });
+
+    utrInput.addEventListener("input", () => { 
+        submitBtn.disabled = utrInput.value.trim() === ""; 
+    });
+
+
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // Get all data from form fields
+        let msg = `🎮 *Street Fighters Registration* 🎮\n\n` +
+                  `Squad: ${document.getElementById("squad").value}\n` +
+                  `Game: ${gameSelect.value}\n` +
+                  `Player: ${document.getElementById("playerName").value}\n` +
+                  `T1: ${document.getElementById("tm1").value}\n` +
+                  `T2: ${document.getElementById("tm2").value}\n` +
+                  `T3: ${document.getElementById("tm3").value}\n` +
+                  `T4: ${document.getElementById("tm4").value}\n` +
+                  `Email: ${document.getElementById("email").value}\n` +
+                  `Phone: ${document.getElementById("phone").value}\n` +
+                  `UTR: ${utrInput.value}`;
+
+        // Open WhatsApp chat
+        let url = `https://wa.me/918780467849?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+    });
+</script>
+
+</body>
+</html>

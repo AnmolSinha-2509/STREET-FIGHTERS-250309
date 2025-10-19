@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Rules | Street-Fighters</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--accent:#ff4757;
+
+--gold1:#FFD700;
+
+--gold2:#FF8C00;
+
+}
+
+*{box-sizing:border-box}
+
+body{
+
+margin:0;
+
+font-family:'Orbitron',sans-serif;
+
+background:url('bg2.jpg') no-repeat center center/cover;
+
+color:#fff;
+
+transition: background .3s,color .3s;
+
+}
+
+body.dark{ background:#111; color:#eee; }
+
+
+.gradient-text{
+
+background: linear-gradient(90deg,var(--gold1),var(--gold2),#FF4500,#fff);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+text-shadow:0 0 8px rgba(255,140,0,.8);
+
+}
+
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:1rem;
+
+background:rgba(0,0,0,.8);
+
+position:sticky; top:0; z-index:1000;
+
+box-shadow:0 0 15px var(--accent);
+
+}
+
+header h1{ margin:0; font-size:1.6rem; }
+
+.menu-toggle{ font-size:1.8rem; cursor:pointer; color:#fff; user-select:none; }
+
+
+nav{
+
+display:none;
+
+flex-direction:column;
+
+background:rgba(0,0,0,.9);
+
+position:absolute; top:70px; right:10px;
+
+border-radius:10px; padding:1rem;
+
+box-shadow:0 0 15px var(--accent);
+
+}
+
+nav a{ color:#fff; text-decoration:none; font-weight:700; margin:6px 0; transition:.2s; }
+
+nav a:hover{ color:var(--accent); text-shadow:0 0 8px var(--accent); }
+
+nav.active{ display:flex; }
+
+
+.dark-toggle{
+
+margin-top:10px; background:var(--accent);
+
+border:none; padding:8px 14px; border-radius:6px; color:#fff;
+
+cursor:pointer; transition:.3s;
+
+}
+
+.dark-toggle:hover{ background:#ff6b81; }
+
+
+h1,h2{ text-align:center; }
+
+h1{ font-size:2rem; margin:30px 0; text-shadow:0 0 8px var(--accent); }
+
+
+.rules{ max-width:1000px; margin:2rem auto; padding:20px; }
+
+.rule-cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+}
+
+.rule-card{
+
+background:rgba(20,20,20,.85);
+
+border-radius:12px;
+
+padding:20px;
+
+box-shadow:0 0 12px rgba(255,71,87,.35);
+
+transition:transform .28s, box-shadow .28s;
+
+position:relative;
+
+overflow:visible;
+
+}
+
+.rule-card:hover{ transform:translateY(-5px) scale(1.03); box-shadow:0 0 18px #ff6b81; }
+
+.rule-card h2{ font-size:1.2rem; margin-bottom:10px; color:#ff6b81; text-shadow:0 0 5px #ff6b81; }
+
+.rule-card p{ font-size:.95rem; color:#ddd; line-height:1.5; }
+
+
+/* ---------- Privacy lock ---------- */
+
+.lock-icon{ font-size:2rem; text-align:center; margin-bottom:8px; display:block; transition:transform .3s; }
+
+.rule-card.privacy .lock-icon::before{ content:"🔓"; display:inline-block; transition:transform .3s; }
+
+.rule-card.privacy:hover .lock-icon::before{ content:"🔒"; transform:scale(1.18); }
+
+
+/* ---------- Camera flash for Proof card ---------- */
+
+.camera-icon{ font-size:2rem; text-align:center; margin-bottom:8px; display:block; }
+
+@keyframes flash {
+
+0%,100% { filter:brightness(1); transform:scale(1); }
+
+50% { filter:brightness(3); transform:scale(1.08); }
+
+}
+
+.rule-card.proof:hover .camera-icon{ animation:flash .5s ease; }
+
+
+/* ---------- MONEY BAG Animation (Entry Fee) ---------- */
+
+.money-icon{ font-size:2rem; display:block; text-align:center; margin-bottom:8px; position:relative; z-index:2; }
+
+.entry .money-wrap{ position:relative; height:44px; display:flex; align-items:center; justify-content:center; }
+
+.bills{ position:absolute; left:50%; bottom:6px; transform:translateX(-50%); pointer-events:none; z-index:1; }
+
+.bill{ position:absolute; font-size:1.1rem; opacity:0; transform-origin:center; will-change:transform,opacity; filter:drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
+
+
+@keyframes billUp1 { 0% { transform:translate(-6px,0) rotate(-8deg) scale(1); opacity:1; } 60% { opacity:1; } 100% { transform:translate(-40px,-90px) rotate(-18deg) scale(.8); opacity:0; } }
+
+@keyframes billUp2 { 0% { transform:translate(0,0) rotate(6deg) scale(1); opacity:1; } 60% { opacity:1; } 100% { transform:translate(10px,-110px) rotate(22deg) scale(.85); opacity:0; } }
+
+@keyframes billUp3 { 0% { transform:translate(8px,0) rotate(2deg) scale(1); opacity:1; } 60% { opacity:1; } 100% { transform:translate(45px,-95px) rotate(12deg) scale(.9); opacity:0; } }
+
+@keyframes billUp4 { 0% { transform:translate(-2px,0) rotate(-4deg) scale(1); opacity:1; } 60% { opacity:1; } 100% { transform:translate(-25px,-130px) rotate(-32deg) scale(.7); opacity:0; } }
+
+
+.rule-card.entry:hover .bill.bill1{ animation:billUp1 .9s ease forwards; }
+
+.rule-card.entry:hover .bill.bill2{ animation:billUp2 1.05s ease .05s forwards; }
+
+.rule-card.entry:hover .bill.bill3{ animation:billUp3 1s ease .08s forwards; }
+
+.rule-card.entry:hover .bill.bill4{ animation:billUp4 1.12s ease .03s forwards; }
+
+.rule-card.entry:hover .money-icon{ transform:translateY(-4px) scale(1.04); transition:transform .18s; }
+
+
+/* ---------- Self Recording Hover Stretch + Info ---------- */
+
+.rule-card.self-record {
+
+transition: all .3s ease;
+
+overflow: hidden;
+
+}
+
+.rule-card.self-record:hover {
+
+transform: translateY(-5px) scale(1.05);
+
+padding-bottom: 80px; /* space for extra info */
+
+}
+
+.rule-card.self-record .more-info {
+
+max-height: 0;
+
+opacity: 0;
+
+overflow: hidden;
+
+transition: max-height .5s ease, opacity .5s ease;
+
+margin-top: 10px;
+
+}
+
+.rule-card.self-record:hover .more-info {
+
+max-height: 200px;
+
+opacity: 1;
+
+}
+
+.more-info p {
+
+font-size: 0.9rem;
+
+color: #ffddaa;
+
+margin-bottom: 8px;
+
+}
+
+.insta-link {
+
+display: inline-flex;
+
+align-items: center;
+
+background: #E1306C;
+
+color: #fff;
+
+padding: 6px 12px;
+
+border-radius: 6px;
+
+font-size: 0.9rem;
+
+text-decoration: none;
+
+transition: background .3s;
+
+}
+
+.insta-link:hover { background: #ff4f80; }
+
+.insta-link img { height: 18px; margin-right: 6px; filter: invert(1); }
+
+
+@media (max-width:420px){
+
+.money-icon{ font-size:1.6rem; }
+
+.bill{ font-size:0.95rem; }
+
+}
+
+
+footer{
+
+text-align:center; padding:12px; background:rgba(0,0,0,.8); margin-top:2rem; font-size:.85rem;
+
+}
+
+footer .social-links img{ height:18px; vertical-align:middle; margin-right:6px; filter:invert(1); }
+
+footer .social-links a{ color:#fff; text-decoration:none; margin:0 8px; }
+
+footer .social-links a:hover{ color:var(--accent); }
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1 class="gradient-text">Street Fighters eSports</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="rules.html" class="active">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="members.html">Members</a>
+
+<a href="community.html">Community</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="login.html">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+</nav>
+
+</header>
+
+
+<section class="rules">
+
+<h1 class="gradient-text">Tournament Rules</h1>
+
+
+<div class="rule-cards">
+
+
+<div class="rule-card">
+
+<h2>👥 Team Size</h2>
+
+<p>Each squad must consist of <b>4 players</b> only.</p>
+
+</div>
+
+
+<div class="rule-card">
+
+<h2>🎮 Game Mode</h2>
+
+<p>Available modes: <b>Battle Royale (Squad)</b> & <b>Clash Squad</b>. Teams must play in the mode announced for the tournament.</p>
+
+</div>
+
+
+<div class="rule-card entry">
+
+<div class="money-wrap">
+
+<span class="money-icon">💰</span>
+
+<div class="bills" aria-hidden="true">
+
+<span class="bill bill1">💸</span>
+
+<span class="bill bill2">💸</span>
+
+<span class="bill bill3">💸</span>
+
+<span class="bill bill4">💸</span>
+
+</div>
+
+</div>
+
+<h2>💰 Entry Fee</h2>
+
+<p><b>₹200</b> for Battle Royale (BR) & <b>₹100</b> for Clash Squad (CS).</p>
+
+</div>
+
+
+<div class="rule-card self-record">
+
+<h2>🎥 Self Recording</h2>
+
+<p>Each player must <b>record their own gameplay</b>. If not submitted, their gameplay <b>will not be shown</b> on our official stream.</p>
+
+<div class="more-info">
+
+<p>⚡ Do NOT record live matches! Record only the highlights after the match ends and send them on Instagram 📲</p>
+
+<a href="https://www.instagram.com/direct/t/freefire_street_tournaments" target="_blank" class="insta-link">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Send Highlights
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="rule-card proof">
+
+<span class="camera-icon">📸</span>
+
+<h2>📸 Proof</h2>
+
+<p>Teams must submit <b>match screenshots</b> after every round to confirm their results.</p>
+
+</div>
+
+
+<div class="rule-card">
+
+<h2>🚫 Fair Play</h2>
+
+<p><b>No hacks</b> or unfair practices allowed. Cheaters will be banned.</p>
+
+</div>
+
+
+<div class="rule-card">
+
+<h2>⚠️ Discipline</h2>
+
+<p>Disrespectful behavior will lead to <b>immediate disqualification</b>.</p>
+
+</div>
+
+
+<div class="rule-card">
+
+<h2>🏆 Final Say</h2>
+
+<p>The decision of the <b>organizers</b> is final and binding.</p>
+
+</div>
+
+
+<div class="rule-card privacy">
+
+<span class="lock-icon"></span>
+
+<h2>🔒 Privacy & Safety</h2>
+
+<p>Your <b>personal information</b> and <b>privacy</b> are our responsibility. We guarantee that your data will <b>never be leaked or misused</b>.</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2025 Street-Fighters | Designed by Anmol Sinha</p>
+
+<div class="social-links">
+
+<a href="https://www.instagram.com/freefire_street_tournaments" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Instagram
+
+</a>
+
+<a href="https://www.facebook.com/share/16xUYMxFzK/" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"> Facebook
+
+</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu(){ document.getElementById('menu').classList.toggle('active'); }
+
+function toggleDarkMode(){ document.body.classList.toggle('dark'); }
+
+</script>
+
+
+</body>
+
+</html>

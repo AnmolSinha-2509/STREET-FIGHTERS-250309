@@ -1,0 +1,499 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+<meta charset="UTF-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Contact | Street-Fighters</title> 
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+margin: 0;
+
+font-family: 'Orbitron', sans-serif;
+
+background: url('bg2.jpg') no-repeat center center/cover;
+
+color: #fff;
+
+transition: background 0.3s, color 0.3s;
+
+}
+
+
+/* Gradient text */
+
+.gradient-text {
+
+background: linear-gradient(90deg, #FFD700, #FF8C00, #FF4500, #ffffff);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+text-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
+
+}
+
+
+header {
+
+background: rgba(0,0,0,0.8);
+
+padding: 0.8rem 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+header h1 {
+
+margin: 0;
+
+font-size: 1.3rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+}
+
+header h1 img {
+
+height: 30px;
+
+border-radius: 6px;
+
+margin-right: 6px;
+
+}
+
+
+nav {
+
+display: none;
+
+flex-direction: column;
+
+background: rgba(0,0,0,0.9);
+
+position: absolute;
+
+top: 70px;
+
+right: 10px;
+
+border-radius: 10px;
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+min-width: 180px;
+
+}
+
+nav a {
+
+color: #fff;
+
+margin: 8px 0;
+
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+font-size: 0.95rem;
+
+}
+
+nav a:hover { color: #ff4757; text-shadow:0 0 8px #ff4757; }
+
+nav a.active { text-shadow:0 0 6px #ff4757; }
+
+nav.active { display: flex; }
+
+
+.menu-toggle { font-size:1.5rem; cursor:pointer; color:#fff; user-select:none; }
+
+.dark-toggle {
+
+margin-top:10px;
+
+background:#ff4757;
+
+border:none;
+
+padding:6px 12px;
+
+border-radius:6px;
+
+color:#fff;
+
+cursor:pointer;
+
+transition:0.3s;
+
+display:block;
+
+font-size:0.85rem;
+
+}
+
+.dark-toggle:hover { background:#ff6b81; }
+
+
+@media(min-width:800px){
+
+nav {
+
+display:flex !important;
+
+flex-direction:row;
+
+background:transparent;
+
+gap:14px;
+
+padding:0;
+
+box-shadow:none;
+
+position:static;
+
+}
+
+.menu-toggle { display:none; }
+
+.dark-toggle { margin-top:0; }
+
+}
+
+
+/* Contact Section */
+
+.contact-section {
+
+max-width: 900px;
+
+margin: 2rem auto;
+
+background: rgba(0,0,0,0.65);
+
+padding: 30px;
+
+border-radius: 12px;
+
+box-shadow: 0 0 20px rgba(255,71,87,0.5);
+
+}
+
+.contact-section h1 {
+
+text-align: center;
+
+margin-bottom: 1rem;
+
+color: #ff4757;
+
+text-shadow: 0 0 12px #ff4757;
+
+}
+
+.contact-info p a { color:#fff; text-decoration:none; }
+
+.contact-info p a:hover { color:#ff4757; }
+
+
+.contact-form {
+
+background: rgba(20,20,20,0.85);
+
+padding: 20px;
+
+border-radius: 10px;
+
+box-shadow:0 0 15px rgba(255,71,87,0.4);
+
+margin-top: 2rem;
+
+}
+
+.contact-form h2 { text-align:center; margin-bottom:15px; color:#ff6b81; }
+
+.contact-form label { display:block; margin:10px 0 5px; font-size:0.9rem; }
+
+.contact-form input, .contact-form textarea, .contact-form select {
+
+width:100%;
+
+padding:10px;
+
+border-radius:6px;
+
+border:1px solid #444;
+
+background:#1a1a1a;
+
+color:#fff;
+
+margin-bottom:10px;
+
+}
+
+.contact-form button {
+
+margin-top:5px;
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:8px;
+
+background:#ff4757;
+
+color:#fff;
+
+font-size:1rem;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.contact-form button:hover { 
+
+background:#ff6b81; 
+
+transform:translateY(-2px); 
+
+box-shadow: 0 0 15px #ff4757;
+
+}
+
+
+footer {
+
+text-align:center;
+
+padding:15px;
+
+background:rgba(0,0,0,0.7);
+
+margin-top:2rem;
+
+font-size:0.9rem;
+
+}
+
+
+body.dark { background:#111 !important; color:#eee; }
+
+body.dark header { background: rgba(30,30,30,0.95); }
+
+body.dark nav { background: rgba(20,20,20,0.95); }
+
+</style>
+
+</head> 
+
+<body> 
+
+<header>
+
+<h1 class="gradient-text">
+
+<img src="LOGO.jpg" alt="Logo"> Street Fighters
+
+</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="members.html">Members</a>
+
+<a href="community.html">Community</a>
+
+<a href="contact.html" class="active">Contact</a>
+
+<a href="login.html">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</nav>
+
+</header> 
+
+
+<section class="contact-section"> 
+
+<h1>Contact Us</h1> 
+
+<p style="text-align:center;">Got questions? Reach out to us directly or use the forms below.</p> 
+
+<div class="contact-info"> 
+
+<p><strong>Email:</strong> <a href="mailto:anmol.sinha250309@gmail.com">anmol.sinha250309@gmail.com</a></p> 
+
+<p><strong>Phone:</strong> <a href="tel:+918780467849">+91 8780467849</a></p> 
+
+<p><strong>Social:</strong></p> 
+
+<p>
+
+<a href="https://www.instagram.com/freefire_street_tournaments" target="_blank">
+
+Instagram
+
+</a>
+
+</p>
+
+<p>
+
+<a href="https://www.facebook.com/share/16xUYMxFzK/" target="_blank">
+
+Facebook
+
+</a>
+
+</p>
+
+</div> 
+
+<div class="contact-form"> 
+
+<h2>Send us a message</h2> 
+
+<form action="mailto:anmol.sinha250309@gmail.com" method="post" enctype="text/plain"> 
+
+<label for="name">Name:</label> 
+
+<input type="text" id="name" name="name" required> 
+
+<label for="email">Email:</label> 
+
+<input type="email" id="email" name="email" required> 
+
+<label for="message">Message:</label> 
+
+<textarea id="message" name="message" rows="5" required></textarea> 
+
+<button type="submit">Send Message</button> 
+
+</form> 
+
+</div> 
+
+
+<div class="contact-form"> 
+
+<h2>Ask a Question</h2> 
+
+<form action="mailto:anmol.sinha250309@gmail.com" method="post" enctype="text/plain"> 
+
+<label for="qname">Your Name:</label> 
+
+<input type="text" id="qname" name="name" placeholder="Enter your name" required> 
+
+
+<label for="qemail">Your Email:</label> 
+
+<input type="email" id="qemail" name="email" placeholder="Enter your email" required> 
+
+
+<label for="qtype">Question Type:</label>
+
+<select id="qtype" name="type" required>
+
+<option value="" disabled selected>Select question type</option>
+
+<option value="Matches">Matches</option>
+
+<option value="Registration">Registration</option>
+
+<option value="Leaderboard">Leaderboard</option>
+
+<option value="Other">Other</option>
+
+</select>
+
+
+<label for="question">Your Question:</label> 
+
+<textarea id="question" name="question" rows="5" placeholder="Type your question here..." required></textarea> 
+
+
+<button type="submit">Send Question</button> 
+
+</form> 
+
+</div>
+
+
+</section> 
+
+
+<footer> 
+
+<p>© 2025 Street-Fighters | Designed by Anmol Sinha</p> 
+
+</footer> 
+
+
+<script>
+
+function toggleMenu() {
+
+document.getElementById('menu').classList.toggle('active');
+
+}
+
+function toggleDarkMode() {
+
+document.body.classList.toggle('dark');
+
+}
+
+</script>
+
+</body> 
+
+</html>

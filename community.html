@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Street-Fighters | Community</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* Reset */
+
+html, body {
+
+margin: 0;
+
+padding: 0;
+
+width: 100%;
+
+height: 100%;
+
+font-family: 'Orbitron', sans-serif;
+
+overflow-x: hidden;
+
+color: white;
+
+}
+
+
+/* Header */
+
+header {
+
+background: rgba(0,0,0,0.8);
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+header h1 {
+
+margin: 0;
+
+font-size: 1.4rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+}
+
+header h1 img {
+
+height: 34px;
+
+border-radius: 6px;
+
+margin-right: 8px;
+
+}
+
+nav {
+
+display: none;
+
+flex-direction: column;
+
+background: rgba(0,0,0,0.9);
+
+position: absolute;
+
+top: 70px;
+
+right: 10px;
+
+border-radius: 10px;
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+min-width: 180px;
+
+}
+
+nav a {
+
+color: #fff;
+
+margin: 8px 0;
+
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+}
+
+nav a:hover {
+
+color: #ff4757;
+
+text-shadow: 0 0 8px #ff4757;
+
+}
+
+nav a.active {
+
+color: #ff4757;
+
+text-shadow: 0 0 6px #ff4757;
+
+}
+
+nav.active {
+
+display: flex;
+
+}
+
+.menu-toggle {
+
+font-size: 1.8rem;
+
+cursor: pointer;
+
+color: #fff;
+
+user-select: none;
+
+}
+
+.dark-toggle {
+
+margin-top: 10px;
+
+background: #ff4757;
+
+border: none;
+
+padding: 8px 14px;
+
+border-radius: 6px;
+
+color: #fff;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+display: block;
+
+}
+
+.dark-toggle:hover {
+
+background: #ff6b81;
+
+}
+
+@media(min-width:800px) {
+
+nav {
+
+display: flex !important;
+
+position: static;
+
+flex-direction: row;
+
+background: transparent;
+
+gap: 14px;
+
+padding: 0;
+
+box-shadow: none;
+
+}
+
+.menu-toggle {
+
+display: none;
+
+}
+
+.dark-toggle {
+
+margin-top: 0;
+
+}
+
+}
+
+
+/* Community Section */
+
+#ff-community {
+
+position: relative;
+
+width: 100vw;
+
+height: 100vh;
+
+background: url('bg2.jpg') center center / cover no-repeat;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+text-align: center;
+
+overflow: hidden;
+
+}
+
+#particle-bg {
+
+position: absolute;
+
+top:0;
+
+left:0;
+
+width: 100%;
+
+height: 100%;
+
+pointer-events: none;
+
+z-index: 1;
+
+}
+
+.content-wrapper {
+
+position: relative;
+
+z-index: 2;
+
+width: 90%;
+
+max-width: 900px;
+
+}
+
+#ff-community h2 {
+
+font-size: calc(3vw + 1rem);
+
+margin-bottom: 1em;
+
+text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+
+background: linear-gradient(90deg, #FFD700, #FF4500);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+}
+
+#ff-community p {
+
+font-size: calc(1.5vw + 0.8rem);
+
+margin-bottom: 2em;
+
+text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+
+}
+
+.whatsapp-btn {
+
+font-size: calc(1.2vw + 0.5rem);
+
+padding: calc(0.8vh + 0.5rem) calc(2vw + 0.5rem);
+
+border-radius: 1vw;
+
+font-weight: bold;
+
+text-decoration: none;
+
+background: linear-gradient(45deg,#25D366,#128C7E);
+
+color: white;
+
+transition: all 0.3s ease;
+
+box-shadow: 0 0 10px #25D366;
+
+}
+
+.whatsapp-btn:hover {
+
+transform: scale(1.1) rotate(-2deg);
+
+box-shadow: 0 0 25px #25D366, 0 0 40px #25D36660;
+
+}
+
+.qr-container {
+
+margin-top: 3vh;
+
+animation: floatQR 2s infinite ease-in-out;
+
+}
+
+.qr-container img {
+
+width: 15vw;
+
+max-width: 180px;
+
+height: auto;
+
+border-radius: 2vw;
+
+border: 0.3vw solid white;
+
+box-shadow: 0 0 15px rgba(255,255,255,0.5);
+
+}
+
+@keyframes floatQR {
+
+0%,100% { transform: translateY(0); }
+
+50% { transform: translateY(-10%); }
+
+}
+
+@media(max-width:500px){
+
+#ff-community h2 { font-size: 6vw; }
+
+#ff-community p { font-size: 3.5vw; }
+
+.whatsapp-btn { font-size: 4vw; padding: 2vw 4vw; border-radius: 3vw; }
+
+.qr-container img { width: 30vw; border-width: 1vw; border-radius: 5vw; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1 class="gradient-text"><img src="LOGO.jpg" alt="Logo"> Street Fighters</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="members.html">Members</a>
+
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="community.html" class="active">Community</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="login.html">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</nav>
+
+</header>
+
+
+<section id="ff-community">
+
+<div class="content-wrapper">
+
+<h2 class="animated-text">🔥 Join the Street-Fighters Community! 🔥</h2>
+
+<p class="animated-text">Connect with Free Fire players, get tournament updates, and join squads. Scan the QR or click the button to join instantly!</p>
+
+<a href="https://chat.whatsapp.com/IS6ks0ZtlMcH5oblEte8JL" target="_blank" class="whatsapp-btn">Join on WhatsApp</a>
+
+<div class="qr-container">
+
+<img src="COM.png" alt="Community QR">
+
+</div>
+
+</div>
+
+<canvas id="particle-bg"></canvas>
+
+</section>
+
+
+<script>
+
+// Hamburger toggle
+
+function toggleMenu(){
+
+document.getElementById('menu').classList.toggle('active');
+
+}
+
+// Dark mode
+
+function toggleDarkMode(){
+
+document.body.classList.toggle('dark');
+
+const btn = document.querySelector('.dark-toggle');
+
+btn.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+
+}
+
+
+// Particle effect
+
+const canvas = document.getElementById('particle-bg');
+
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+
+function initParticles(){
+
+canvas.width = window.innerWidth;
+
+canvas.height = window.innerHeight;
+
+particles = [];
+
+for(let i=0;i<100;i++){
+
+particles.push({
+
+x: Math.random()*canvas.width,
+
+y: Math.random()*canvas.height,
+
+r: Math.random()*2+1,
+
+dx: (Math.random()-0.5)*0.5,
+
+dy: (Math.random()-0.5)*0.5
+
+});
+
+}
+
+}
+
+function drawParticles(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let p of particles){
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fillStyle = 'rgba(255,255,255,0.5)';
+
+ctx.fill();
+
+p.x += p.dx;
+
+p.y += p.dy;
+
+if(p.x<0||p.x>canvas.width) p.dx*=-1;
+
+if(p.y<0||p.y>canvas.height) p.dy*=-1;
+
+}
+
+requestAnimationFrame(drawParticles);
+
+}
+
+window.addEventListener('resize', initParticles);
+
+initParticles();
+
+drawParticles();
+
+</script>
+
+</body>
+
+</html>

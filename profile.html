@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | Street-Fighters</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="menu.js"></script>
+  <script defer src="profile.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <img src="LOGO.jpg" alt="Street Tournaments Logo">
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="rules.html">Rules</a>
+      <a href="register.html">Register</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="login-btn" id="auth-buttons">
+      <a href="login.html" id="login-link">Login</a>
+      <a href="profile.html" id="profile-link" style="display:none;">Profile</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <h1>Your Profile</h1>
+    <div id="profile-info">
+      <p><strong>Email:</strong> <span id="user-email"></span></p>
+      <p><strong>Name:</strong> <input type="text" id="user-name" placeholder="Enter your name"></p>
+      <button id="save-profile">Save Changes</button>
+      <br><br>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Street-Fighters | Designed by Anmol Sinha</p>
+  </footer>
+
+</body>
+</html>

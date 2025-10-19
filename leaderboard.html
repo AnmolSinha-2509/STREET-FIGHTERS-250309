@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>First Tournament Result - Street-Fighters Style</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+margin: 0;
+
+font-family: 'Orbitron', sans-serif;
+
+background: url('bg2.jpg') no-repeat center center/cover;
+
+background-size: cover;
+
+color: #fff;
+
+transition: background 0.3s, color 0.3s;
+
+}
+
+body.dark { background: #111; color: #eee; }
+
+header {
+
+background: rgba(0, 0, 0, 0.8);
+
+padding: 0.6rem 1rem;
+
+box-shadow: 0 0 12px #ff4757;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+header h1 {
+
+margin: 0;
+
+font-size: 1.2rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+}
+
+header h1 img {
+
+height: 28px;
+
+border-radius: 6px;
+
+vertical-align: middle;
+
+margin-right: 6px;
+
+}
+
+nav {
+
+display: none;
+
+flex-direction: column;
+
+background: rgba(0,0,0,0.9);
+
+position: absolute;
+
+top: 70px;
+
+right: 10px;
+
+border-radius: 10px;
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+min-width: 180px;
+
+}
+
+nav a {
+
+color: #fff;
+
+margin: 8px 0;
+
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+font-size: 0.95rem;
+
+}
+
+nav a:hover { color: #ff4757; text-shadow: 0 0 8px #ff4757; }
+
+nav a.active { color: #ff4757; text-shadow: 0 0 6px #ff4757; }
+
+nav.active { display: flex; }
+
+.menu-toggle { font-size: 1.5rem; cursor: pointer; color: #fff; user-select: none; }
+
+.dark-toggle {
+
+margin-top: 10px;
+
+background: #ff4757;
+
+border: none;
+
+padding: 6px 12px;
+
+border-radius: 6px;
+
+color: #fff;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+display: block;
+
+font-size: 0.85rem;
+
+}
+
+.dark-toggle:hover { background: #ff6b81; }
+
+@media(min-width:800px){
+
+nav { display: flex !important; position: static; flex-direction: row; background: transparent; gap: 14px; padding: 0; box-shadow: none; }
+
+.menu-toggle { display: none; }
+
+.dark-toggle { margin-top: 0; }
+
+}
+
+.container {
+
+max-width: 1000px;
+
+margin: 40px auto;
+
+background: rgba(0,0,0,0.6);
+
+border-radius: 12px;
+
+padding: 2rem;
+
+box-shadow: 0 0 20px rgba(255,71,87,0.5);
+
+}
+
+h1 {
+
+text-align: center;
+
+font-size: 2.2rem;
+
+margin-bottom: 20px;
+
+background: linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#ffffff);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+text-shadow: 0 0 8px rgba(255,140,0,0.8);
+
+}
+
+.leaderboard h2 {
+
+text-align: center;
+
+font-size: 1.8rem;
+
+margin-bottom: 20px;
+
+background: linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#ffffff);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+text-shadow: 0 0 6px rgba(255,140,0,0.8);
+
+}
+
+.player {
+
+background: linear-gradient(135deg, rgba(255,140,0,0.3), rgba(255,69,0,0.4));
+
+padding: 6px 16px; 
+
+min-height: 38px; /* Adjusted min-height to match smaller image */
+
+margin-bottom: 10px;
+
+border-radius: 10px;
+
+box-shadow: 0 0 10px rgba(255,140,0,0.6);
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+transition: transform 0.3s;
+
+font-size: 1rem;
+
+line-height: 1.2; 
+
+}
+
+.player:hover { transform: translateY(-4px); }
+
+.blue-bar {
+
+background: linear-gradient(135deg, rgba(0,123,255,0.35), rgba(0,200,255,0.45));
+
+box-shadow: 0 0 10px rgba(0,123,255,0.6);
+
+}
+
+.name { 
+
+font-size: 1.05rem; 
+
+display: flex; 
+
+align-items: center; 
+
+gap: 6px; 
+
+line-height: 1.2; 
+
+}
+
+.name img {
+
+height: 24px; /* Reduced image height */
+
+width: 24px; /* Ensure image stays square */
+
+border-radius: 4px; /* Slightly smaller border radius for smaller image */
+
+margin-right: 6px;
+
+vertical-align: middle;
+
+box-shadow: 0 0 5px rgba(255,140,0,0.4);
+
+}
+
+.kills { font-size: 1.05rem; font-weight: bold; }
+
+.mvp, .tf { 
+
+margin-left: 6px; 
+
+font-weight: bold; 
+
+font-size: 1.15rem; 
+
+transition: 0.3s;
+
+padding: 2px 6px;
+
+border-radius: 4px;
+
+line-height: 1; 
+
+}
+
+
+/* MVP Gold Style */
+
+.mvp.gold { color: gold; background: rgba(255, 215, 0, 0.15); border: 1px solid gold; text-shadow: 0 0 4px gold; }
+
+.mvp.gold:hover { text-shadow: 0 0 6px gold, 0 0 12px orange; background: rgba(255, 215, 0, 0.3); }
+
+
+/* Top Fragger (TF) Gold Style */
+
+.tf.tf-gold { color: #ff7f00; background: rgba(255, 127, 0, 0.15); border: 1px solid #ff7f00; text-shadow: 0 0 4px #ff7f00; }
+
+.tf.tf-gold:hover { text-shadow: 0 0 6px #ff7f00, 0 0 12px #ff4500; background: rgba(255, 127, 0, 0.3); }
+
+
+/* Silver/Runner-up MVP (currently unused, kept for future use) */
+
+.silver { color: silver; text-shadow: 0 0 6px silver,0 0 12px #aaa; }
+
+
+@media(max-width:600px){
+
+.player { font-size: 0.9rem; padding: 5px 12px; min-height: 32px; /* Adjusted for smaller mobile height */ } 
+
+.name, .kills { font-size: 0.95rem; }
+
+.name img { height: 18px; width: 18px; /* Further reduced for mobile */ margin-right: 4px;}
+
+.mvp, .tf { font-size: 1rem; padding: 1px 4px; margin-left: 4px;}
+
+}
+
+.certificate { text-align: center; margin: 30px 0; }
+
+.certificate h2 { margin-bottom: 20px; }
+
+.certificate img { 
+
+width: 80%; 
+
+max-width: 500px; 
+
+border-radius: 12px; 
+
+box-shadow: 0 0 25px rgba(255,71,200,0.6); 
+
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+}
+
+.certificate img:hover {
+
+transform: scale(1.05) rotate(1deg);
+
+box-shadow: 0 0 35px rgba(255,71,200,0.9), 0 0 60px rgba(255,71,200,0.6);
+
+}
+
+.coming-soon { text-align: center; font-size: 1.4rem; font-weight: bold; margin-top: 25px; color: #ff0057; text-shadow: 0 0 8px #ff0057,0 0 16px #ff3399; }
+
+.credits {
+
+margin-top: 40px;
+
+}
+
+.credits h2 {
+
+text-align: center;
+
+font-size: 1.7rem;
+
+margin-bottom: 20px;
+
+color: #FFD700;
+
+text-shadow: 0 0 8px #ff4757, 0 0 14px #ff6b81;
+
+}
+
+.credit-card {
+
+background: linear-gradient(145deg, rgba(255,71,87,0.2), rgba(0,0,0,0.7));
+
+border: 1px solid rgba(255,71,87,0.6);
+
+border-radius: 12px;
+
+padding: 1.2rem;
+
+margin-bottom: 15px;
+
+box-shadow: 0 0 12px rgba(255,71,87,0.5);
+
+transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+.credit-card:hover {
+
+transform: scale(1.02);
+
+box-shadow: 0 0 20px rgba(255,71,87,0.8);
+
+}
+
+.credit-card h3 {
+
+margin: 0 0 8px;
+
+font-size: 1.2rem;
+
+color: #ff6b81;
+
+}
+
+.credit-card p {
+
+margin: 0;
+
+font-size: 1rem;
+
+color: #fff;
+
+}
+
+footer {
+
+text-align: center;
+
+padding: 12px;
+
+background: rgba(0,0,0,0.8);
+
+margin-top: 2rem;
+
+font-size: 0.85rem;
+
+}
+
+footer .social-links img { height: 18px; vertical-align: middle; margin-right: 6px; filter: invert(1); }
+
+footer .social-links a { color: #fff; text-decoration: none; margin: 0 8px; }
+
+footer .social-links a:hover { color: #ff4757; }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1 class="gradient-text">
+
+<img src="LOGO.jpg" alt="Logo"> Street Fighters
+
+</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="members.html">Members</a>
+
+<a href="community.html">Community</a>
+
+<a href="leaderboard.html" class="active">Leaderboard</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="login.html">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</nav>
+
+</header>
+
+
+<div class="container">
+
+<h1>🎉 First Tournament Result 🎉</h1>
+
+
+<div class="leaderboard">
+
+<h2>Leaderboard</h2>
+
+<div class="player blue-bar">
+
+<span class="name">
+
+<img src="BD.jpg" alt="Team Logo">
+
+TGROK!IIER <span class="mvp gold">MVP</span>
+
+</span>
+
+<span class="kills">9 Kills</span>
+
+</div>
+
+<div class="player">
+
+<span class="name">
+
+<img src="WTF-L.png" alt="Team Logo">
+
+VAZIRES <span class="tf tf-gold">TF</span>
+
+</span>
+
+<span class="kills">11 Kills</span>
+
+</div>
+
+<div class="player blue-bar">
+
+<span class="name">
+
+<img src="BD.jpg" alt="Team Logo">
+
+TGR SHADOW
+
+</span>
+
+<span class="kills">7 Kills</span>
+
+</div>
+
+<div class="player">
+
+<span class="name">
+
+<img src="WTF-L.png" alt="Team Logo">
+
+NN_TEJPAL
+
+</span>
+
+<span class="kills">7 Kills</span>
+
+</div>
+
+<div class="player">
+
+<span class="name">
+
+<img src="WTF-L.png" alt="Team Logo">
+
+cRAzy_Abhi
+
+</span>
+
+<span class="kills">6 Kills</span>
+
+</div>
+
+<div class="player blue-bar">
+
+<span class="name">
+
+<img src="BD.jpg" alt="Team Logo">
+
+SHUB 999
+
+</span>
+
+<span class="kills">4 Kills</span>
+
+</div>
+
+<div class="player blue-bar">
+
+<span class="name">
+
+<img src="BD.jpg" alt="Team Logo">
+
+TEAM?Mafiya
+
+</span>
+
+<span class="kills">3 Kills</span>
+
+</div>
+
+</div>
+
+
+<div class="credits">
+
+<h2>🔥 Credit Goes To 🔥</h2>
+
+<div class="credit-card">
+
+<h3>
+
+<img src="BD.jpg" alt="The Black Dragons Logo" style="height: 24px; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
+
+First Tournament (CS) Champions: The Black Dragons
+
+</h3>
+
+<p>MVP: <strong>TGROK!IIER</strong> — Outstanding performance!</p>
+
+<p>Top Fragger: <strong>VAZIRES</strong> (11 Kills) — Highest kills in the tournament!</p>
+
+</div>
+
+</div>
+
+
+<div class="certificate">
+
+<h2>🏆 First Tournament Winners got these Certificates 🏆</h2>
+
+<img src="Cer1.jpg" alt="Certificate">
+
+</div>
+
+
+<div class="coming-soon">🚀 Upcoming Events — Coming Soon...</div>
+
+</div>
+
+
+<footer>
+
+<p>© 2025 Street-Fighters | Designed by Anmol Sinha</p>
+
+<div class="social-links">
+
+<a href="https://www.instagram.com/tournaments_by_as" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Instagram
+
+</a>
+
+<a href="https://www.facebook.com/share/16xUYMxFzK/" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"> Facebook
+
+</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu(){document.getElementById('menu').classList.toggle('active');}
+
+function toggleDarkMode(){
+
+document.body.classList.toggle('dark');
+
+const btn=document.querySelector('.dark-toggle');
+
+btn.textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
+
+}
+
+</script>
+
+</body>
+
+</html>

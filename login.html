@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STREET FIGHTERS | Access Arena</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ... (Your existing CSS styles remain here) ... */
+        :root {
+            /* Gradient colors: Orange, Yellow, Red */
+            --gradient-start: #FF9800; 
+            --gradient-mid: #FFC107;   
+            --gradient-end: #F44336;   
+            --text-color-primary: #ffffff; 
+            --bg-dark-form: rgba(20, 10, 5, 0.9); 
+            --bg-light-input: rgba(35, 20, 10, 0.9); 
+            --header-color: #ff4757;
+        }
+        body {
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif; 
+            background: url("BG2.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 5, 0, 0.85); 
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(255,140,0,0.8);
+        }
+        header {
+            background: rgba(0,0,0,0.8); padding: 1rem; box-shadow: 0 0 15px var(--header-color);
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        header h1 { margin: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        header h1 img { height: 34px; border-radius: 6px; margin-right: 8px; }
+        nav { /* Menu styles... */ display: none; flex-direction: column; background: rgba(0,0,0,0.9); position: absolute; top: 70px; right: 10px; border-radius: 10px; padding: 1rem; box-shadow: 0 0 15px var(--header-color); min-width: 180px; z-index: 1001; }
+        nav a { color: #fff; margin: 8px 0; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: var(--header-color); text-shadow: 0 0 8px var(--header-color); }
+        nav a.active { color: var(--header-color); text-shadow: 0 0 6px var(--header-color); }
+        nav.active { display: flex; }
+        .menu-toggle { font-size: 1.8rem; cursor: pointer; color: #fff; user-select: none; }
+        .dark-toggle { margin-top: 10px; background: var(--header-color); border: none; padding: 8px 14px; border-radius: 6px; color: #fff; cursor: pointer; display: block; }
+        .dark-toggle:hover { background: #ff6b81; }
+        @media(min-width:800px) { nav { display: flex !important; position: static; flex-direction: row; background: transparent; gap: 14px; padding: 0; box-shadow: none; } .menu-toggle { display: none; } .dark-toggle { margin-top: 0; } }
+        /* ================================================= */
+        /* === AUTH FORM STYLES (Gradient Theme) === */
+        /* ================================================= */
+        .auth-wrapper {
+            display: flex; justify-content: center; align-items: center;
+            min-height: calc(100vh - 80px); padding: 20px; z-index: 2; position: relative;
+        }
+        .auth-container {
+            background: var(--bg-dark-form); padding: 40px; border-radius: 12px;
+            border: 2px solid; border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-mid), var(--gradient-end)) 1;
+            box-shadow: 0 0 30px rgba(255, 165, 0, 0.7); 
+            width: 380px; max-width: 90%; text-align: center;
+        }
+        h2 {
+            font-family: 'Oswald', sans-serif; color: var(--text-color-primary); 
+            text-shadow: 0 0 8px var(--gradient-start), 0 0 15px var(--gradient-end);
+            margin-bottom: 25px; font-size: 2.2em; letter-spacing: 2px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-mid), var(--gradient-end)) 1;
+            padding-bottom: 10px;
+        }
+        input {
+            width: calc(100% - 24px); padding: 12px; margin: 10px 0;
+            border: 1px solid; border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end)) 1;
+            border-radius: 6px; box-sizing: border-box;
+            background-color: var(--bg-light-input); color: var(--text-color-primary);
+            font-size: 1.1em; outline: none; transition: box-shadow 0.3s;
+        }
+        input:focus {
+            border-image: linear-gradient(to right, var(--gradient-end), var(--gradient-start)) 1; 
+            box-shadow: 0 0 15px var(--gradient-mid); 
+        }
+        input::placeholder { color: #a0a0a0; }
+
+        /* Custom style for the username field (hidden by default) */
+        #username-group { display: none; } 
+
+        .action-button {
+            width: 100%; padding: 15px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+            color: var(--bg-dark-form); border: none; border-radius: 6px; cursor: pointer;
+            font-size: 1.2em; font-weight: 700; margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.7); 
+        }
+        .action-button:hover {
+            background: linear-gradient(to right, var(--gradient-end), var(--gradient-mid), var(--gradient-start));
+            transform: translateY(-1px); box-shadow: 0 0 20px rgba(255, 220, 0, 0.9); 
+        }
+        
+        /* Toggle Link/Button */
+        .toggle-link {
+            margin-top: 15px; font-size: 0.95em; cursor: pointer;
+            color: var(--gradient-mid); transition: color 0.3s;
+        }
+        .toggle-link:hover {
+            color: var(--gradient-start); text-decoration: underline;
+        }
+
+        #message { /* Message box styles */ margin-top: 20px; text-align: center; padding: 12px; border-radius: 6px; font-weight: 600; color: var(--text-color-primary); font-size: 1em; border-left: 5px solid; border-image: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end)) 1; }
+        .success { background-color: rgba(50, 205, 50, 0.1); border-color: #32cd32; color: #32cd32; }
+        .error { background-color: rgba(255, 0, 0, 0.1); border-color: #ff0000; color: #ff0000; }
+        
+        /* New style for the Profile link */
+        .profile-link {
+            color: #fff !important; 
+            background-color: var(--header-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .profile-link:hover {
+             background-color: #ff6b81;
+             text-shadow: none !important;
+        }
+    </style>
+</head>
+
+<body onload="checkAuthStatus()">
+
+<header>
+    <h1 class="gradient-text"><img src="LOGO.jpg" alt="Logo"> Street Fighters</h1>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    
+    <nav id="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="rules.html">Rules</a>
+        <a href="register.html">Register</a>
+        <a href="members.html">Members</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="community.html">Community</a>
+        <a href="contact.html">Contact</a>
+        
+        <a href="auth.html" id="auth-nav-link" class="active">Access</a> 
+        <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </nav>
+</header>
+
+<div class="auth-wrapper">
+    <div class="auth-container">
+        <h2 id="auth-title">FIGHTER LOGIN</h2>
+        
+        <form id="auth-form">
+            <div id="username-group">
+                <input type="text" id="username" placeholder="Fighter Username" required>
+            </div>
+            
+            <input type="email" id="email" placeholder="Official Email Address" required>
+            <input type="password" id="password" placeholder="Secure Access Key" required>
+            
+            <button type="submit" class="action-button" id="submit-button">ACCESS ARENA</button>
+        </form>
+        
+        <p class="toggle-link" onclick="toggleMode()">New Fighter? Click here to **Register**</p>
+        
+        <div id="message"></div>
+    </div>
+</div>
+
+<script>
+    // --- Global State ---
+    let isLoginMode = true; // Default mode is Login
+
+    // --- DOM Elements ---
+    const authTitle = document.getElementById('auth-title');
+    const usernameGroup = document.getElementById('username-group');
+    const usernameInput = document.getElementById('username');
+    const submitButton = document.getElementById('submit-button');
+    const toggleLink = document.querySelector('.toggle-link');
+    const messageElement = document.getElementById('message');
+    const authForm = document.getElementById('auth-form');
+    const authNavLink = document.getElementById('auth-nav-link'); // New element to target
+
+    // --- Core Logic ---
+
+    function toggleMode() {
+        isLoginMode = !isLoginMode; // Switch the mode
+        
+        if (isLoginMode) {
+            authTitle.textContent = 'FIGHTER LOGIN';
+            usernameGroup.style.display = 'none';
+            usernameInput.required = false;
+            submitButton.textContent = 'ACCESS ARENA';
+            toggleLink.innerHTML = 'New Fighter? Click here to **Register**';
+        } else {
+            authTitle.textContent = 'NEW FIGHTER REGISTRATION';
+            usernameGroup.style.display = 'block';
+            usernameInput.required = true;
+            submitButton.textContent = 'CREATE ACCOUNT';
+            toggleLink.innerHTML = 'Already registered? Click here to **Login**';
+        }
+        messageElement.textContent = ''; 
+        authForm.reset(); 
+    }
+
+    // Function to update the header link
+    function updateHeaderForLoggedInUser(username) {
+        authNavLink.textContent = username || 'PROFILE'; 
+        authNavLink.href = 'profile.html'; // Assuming you have a profile page
+        authNavLink.classList.remove('active');
+        authNavLink.classList.add('profile-link');
+        
+        // Agar aap chahte hain ki login page ka content hide ho jaaye:
+        document.querySelector('.auth-wrapper').innerHTML = `
+            <div class="auth-container">
+                <h2 class="gradient-text">Welcome Back, ${username}!</h2>
+                <p style="font-size: 1.1em;">You are already logged into the Arena.</p>
+                <a href="index.html" class="action-button" style="display: block;">Go To Home</a>
+                <button onclick="logout()" class="action-button" style="background: #444; margin-top: 10px;">Logout</button>
+            </div>
+        `;
+    }
+
+    // Function to check login status on page load (Added for persistent state)
+    function checkAuthStatus() {
+        const username = localStorage.getItem('username');
+        if (localStorage.getItem('isLoggedIn') === 'true' && username) {
+            updateHeaderForLoggedInUser(username);
+        }
+    }
+    
+    // Function to handle logout
+    function logout() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('username');
+        window.location.reload(); // Page reload karke default mode mein wapas aayenge
+    }
+
+
+    // --- Form Submission Handler (Updated to save to localStorage) ---
+    authForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const username = usernameInput.value;
+
+        const endpoint = isLoginMode ? '/api/login' : '/api/register';
+        
+        const payload = isLoginMode 
+            ? { email, password }
+            : { username, email, password };
+        
+        messageElement.textContent = isLoginMode ? 'Verifying combo...' : 'Processing registration...';
+        messageElement.className = ''; 
+        
+        try {
+            const response = await fetch(endpoint, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Save user data to local storage on SUCCESS
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', result.user.username);
+                
+                if (isLoginMode) {
+                    messageElement.textContent = `Access Granted! Welcome, ${result.user.username}. Redirecting...`;
+                    messageElement.classList.add('success');
+                } else {
+                    messageElement.textContent = `Registration Successful! Welcome, ${result.user.username}. Redirecting...`;
+                    messageElement.classList.add('success');
+                }
+                
+                // Update header immediately and redirect after a short delay
+                updateHeaderForLoggedInUser(result.user.username);
+                setTimeout(() => { window.location.href = 'index.html'; }, 1500); // Redirect to home page
+
+            } else {
+                messageElement.textContent = `Error: ${result.message || 'An unknown error occurred.'}`;
+                messageElement.classList.add('error');
+            }
+
+        } catch (error) {
+            console.error('Network/Fetch Error:', error);
+            messageElement.textContent = 'Connection Error. Please check server status.';
+            messageElement.classList.add('error');
+        }
+    });
+
+
+    // --- Menu and Dark Mode Logic ---
+    function toggleMenu(){ document.getElementById('menu').classList.toggle('active'); }
+    function toggleDarkMode(){
+        document.body.classList.toggle('dark');
+        const btn = document.querySelector('.dark-toggle');
+        btn.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    }
+</script>
+
+</body>
+</html>

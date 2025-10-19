@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Street-Fighters | Members</title>
+
+<meta name="description" content="Meet the teams of Street-Fighters Free Fire Tournament community.">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+margin: 0;
+
+font-family: 'Orbitron', sans-serif;
+
+background: url('bg2.jpg') no-repeat center center fixed;
+
+background-size: cover;
+
+color: #fff;
+
+}
+
+body.dark { background: #111; color: #eee; }
+
+
+header {
+
+background: rgba(0, 0, 0, 0.8);
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+header h1 {
+
+margin: 0;
+
+font-size: 1.4rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+}
+
+header h1 img { height: 34px; border-radius: 6px; }
+
+
+nav {
+
+display: none;
+
+flex-direction: column;
+
+background: rgba(0,0,0,0.9);
+
+position: absolute;
+
+top: 70px;
+
+right: 10px;
+
+border-radius: 10px;
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+min-width: 180px;
+
+}
+
+nav a {
+
+color: #fff;
+
+margin: 8px 0;
+
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+}
+
+nav a:hover { color: #ff4757; text-shadow: 0 0 8px #ff4757; }
+
+nav a.active { color: #ff4757; text-shadow: 0 0 6px #ff4757; }
+
+nav.active { display: flex; }
+
+.menu-toggle { font-size: 1.8rem; cursor: pointer; color: #fff; user-select: none; }
+
+.dark-toggle {
+
+margin-top: 10px;
+
+background: #ff4757;
+
+border: none;
+
+padding: 8px 14px;
+
+border-radius: 6px;
+
+color: #fff;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+}
+
+.dark-toggle:hover { background: #ff6b81; }
+
+
+@media (min-width: 800px) {
+
+nav { display: flex !important; position: static; flex-direction: row; background: transparent; gap: 14px; padding: 0; box-shadow: none; }
+
+.menu-toggle { display: none; }
+
+}
+
+
+.members-section {
+
+max-width: 1200px;
+
+margin: 2rem auto;
+
+background: rgba(0,0,0,0.6);
+
+padding: 2rem;
+
+border-radius: 12px;
+
+box-shadow: 0 0 20px rgba(255,71,87,0.5);
+
+}
+
+.members-section h2 {
+
+text-align: center;
+
+font-size: 2rem;
+
+margin-bottom: 1.5rem;
+
+color: #FFD700;
+
+}
+
+
+.team-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+gap: 20px;
+
+}
+
+.team-card {
+
+background: rgba(255,255,255,0.08);
+
+padding: 1rem;
+
+border-radius: 12px;
+
+box-shadow: 0 0 12px rgba(255,71,87,0.4);
+
+transition: transform 0.3s;
+
+}
+
+.team-card:hover { transform: translateY(-5px); }
+
+.team-card h3 {
+
+margin: 0.5rem 0;
+
+text-align: center;
+
+background: linear-gradient(90deg, #FFD700, #FF8C00, #FF4500, #ffffff);
+
+-webkit-background-clip: text;
+
+-webkit-text-fill-color: transparent;
+
+text-shadow: 0 0 6px rgba(255, 140, 0, 0.8);
+
+}
+
+.team-card ul { list-style: none; padding: 0; margin: 0; }
+
+.team-card ul li {
+
+padding: 5px 0;
+
+border-bottom: 1px solid rgba(255,255,255,0.1);
+
+font-size: 0.95rem;
+
+}
+
+.team-card ul li:last-child { border-bottom: none; }
+
+
+footer {
+
+text-align:center;
+
+padding:15px;
+
+background:rgba(0,0,0,0.7);
+
+margin-top:2rem;
+
+font-size:0.9rem;
+
+}
+
+footer .social-links img {
+
+height:18px;
+
+vertical-align:middle;
+
+margin-right:6px;
+
+filter:invert(1);
+
+transition:0.3s;
+
+}
+
+footer .social-links a { color:#fff; text-decoration:none; margin:0 8px; }
+
+footer .social-links a:hover { color:#ff4757; }
+
+footer .social-links a:hover img {
+
+filter: invert(49%) sepia(86%) saturate(5000%) hue-rotate(340deg) brightness(105%) contrast(105%);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1 class="gradient-text">
+
+<img src="LOGO.jpg" alt="Logo"> Street Fighters
+
+</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="members.html" class="active">Members</a>
+
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="community.html">Community</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="login.html">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</nav>
+
+</header>
+
+
+<section class="members-section">
+
+<h2>Battle Royale Teams</h2>
+
+<div class="team-grid">
+
+<div class="team-card"><h3>BR Team 1</h3><ul><li>Player A</li><li>Player B</li><li>Player C</li><li>Player D</li></ul></div>
+
+<div class="team-card"><h3>BR Team 2</h3><ul><li>Player E</li><li>Player F</li><li>Player G</li><li>Player H</li></ul></div>
+
+<div class="team-card"><h3>BR Team 3</h3><ul><li>Player I</li><li>Player J</li><li>Player K</li><li>Player L</li></ul></div>
+
+<div class="team-card"><h3>BR Team 4</h3><ul><li>Player M</li><li>Player N</li><li>Player O</li><li>Player P</li></ul></div>
+
+<div class="team-card"><h3>BR Team 5</h3><ul><li>Player Q</li><li>Player R</li><li>Player S</li><li>Player T</li></ul></div>
+
+<div class="team-card"><h3>BR Team 6</h3><ul><li>Player U</li><li>Player V</li><li>Player W</li><li>Player X</li></ul></div>
+
+<div class="team-card"><h3>BR Team 7</h3><ul><li>Player Y</li><li>Player Z</li><li>Player AA</li><li>Player AB</li></ul></div>
+
+<div class="team-card"><h3>BR Team 8</h3><ul><li>Player AC</li><li>Player AD</li><li>Player AE</li><li>Player AF</li></ul></div>
+
+<div class="team-card"><h3>BR Team 9</h3><ul><li>Player AG</li><li>Player AH</li><li>Player AI</li><li>Player AJ</li></ul></div>
+
+<div class="team-card"><h3>BR Team 10</h3><ul><li>Player AK</li><li>Player AL</li><li>Player AM</li><li>Player AN</li></ul></div>
+
+<div class="team-card"><h3>BR Team 11</h3><ul><li>Player AO</li><li>Player AP</li><li>Player AQ</li><li>Player AR</li></ul></div>
+
+<div class="team-card"><h3>BR Team 12</h3><ul><li>Player AS</li><li>Player AT</li><li>Player AU</li><li>Player AV</li></ul></div>
+
+</div>
+
+</section>
+
+
+<section class="members-section">
+
+<h2>Clash Squad Teams</h2>
+
+<div class="team-grid">
+
+<div class="team-card"><h3>CS Team 1</h3><ul><li>Player 1</li><li>Player 2</li><li>Player 3</li><li>Player 4</li></ul></div>
+
+<div class="team-card"><h3>CS Team 2</h3><ul><li>Player 5</li><li>Player 6</li><li>Player 7</li><li>Player 8</li></ul></div>
+
+<div class="team-card"><h3>CS Team 3</h3><ul><li>Player 9</li><li>Player 10</li><li>Player 11</li><li>Player 12</li></ul></div>
+
+<div class="team-card"><h3>CS Team 4</h3><ul><li>Player 13</li><li>Player 14</li><li>Player 15</li><li>Player 16</li></ul></div>
+
+</div>
+
+</section>
+
+
+<section class="members-section">
+
+<h2>SoloX Arena (1v1)</h2>
+
+<div class="team-grid">
+
+<div class="team-card"><h3>Dhruv</h3></div>
+
+<div class="team-card"><h3>Ankush</h3></div>
+
+<div class="team-card"><h3>Krishna</h3></div>
+
+<div class="team-card"><h3>Sayan</h3></div>
+
+<div class="team-card"><h3>Vishu</h3></div>
+
+<div class="team-card"><h3>Aarin</h3></div>
+
+<div class="team-card"><h3>Suraj</h3></div>
+
+<div class="team-card"><h3>Kartik</h3></div> <div class="team-card"><h3>Player 9</h3></div>
+
+<div class="team-card"><h3>Player 10</h3></div>
+
+<div class="team-card"><h3>Player 11</h3></div>
+
+<div class="team-card"><h3>Player 12</h3></div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2025 Street-Fighters | Designed by Anmol Sinha</p>
+
+<div class="social-links">
+
+<a href="https://www.instagram.com/freefire_street_tournaments" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Instagram
+
+</a>
+
+<a href="https://www.facebook.com/share/16xUYMxFzK/" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"> Facebook
+
+</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu() { document.getElementById('menu').classList.toggle('active'); }
+
+function toggleDarkMode() { document.body.classList.toggle('dark'); }
+
+</script>
+
+</body>
+
+</html>

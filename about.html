@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Street-Fighters</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+
+margin: 0;
+
+font-family: 'Orbitron', sans-serif;
+
+background: url('bg2.jpg') no-repeat center center fixed;
+
+background-size: cover;
+
+color: #fff;
+
+transition: background 0.3s, color 0.3s;
+
+}
+
+body.dark { background: #111; color: #eee; }
+
+
+/* === HEADER === */
+
+header {
+
+background: rgba(0, 0, 0, 0.8);
+
+padding: 0.6rem 1rem;
+
+box-shadow: 0 0 12px #ff4757;
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+}
+
+header h1 {
+
+margin: 0;
+
+font-size: 1.2rem;
+
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+}
+
+header h1 img {
+
+height: 28px;
+
+border-radius: 6px;
+
+margin-right: 6px;
+
+}
+
+
+nav {
+
+display: none;
+
+flex-direction: column;
+
+background: rgba(0,0,0,0.9);
+
+position: absolute;
+
+top: 70px;
+
+right: 10px;
+
+border-radius: 10px;
+
+padding: 1rem;
+
+box-shadow: 0 0 15px #ff4757;
+
+min-width: 180px;
+
+}
+
+nav a {
+
+color: #fff;
+
+margin: 8px 0;
+
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.3s;
+
+font-size: 0.95rem;
+
+}
+
+nav a:hover {
+
+color: #ff4757;
+
+text-shadow: 0 0 8px #ff4757;
+
+}
+
+nav a.active { text-shadow: 0 0 6px #ff4757; }
+
+nav.active { display: flex; }
+
+
+.menu-toggle { font-size: 1.5rem; cursor: pointer; color: #fff; user-select: none; }
+
+.dark-toggle {
+
+margin-top: 10px;
+
+background: #ff4757;
+
+border: none;
+
+padding: 6px 12px;
+
+border-radius: 6px;
+
+color: #fff;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+display: block;
+
+font-size: 0.85rem;
+
+}
+
+.dark-toggle:hover { background: #ff6b81; }
+
+
+@media (min-width: 800px) {
+
+nav {
+
+display: flex !important;
+
+position: static;
+
+flex-direction: row;
+
+background: transparent;
+
+gap: 14px;
+
+padding: 0;
+
+box-shadow: none;
+
+}
+
+.menu-toggle { display: none; }
+
+.dark-toggle { margin-top: 0; }
+
+}
+
+
+/* === ABOUT SECTION === */
+
+.about {
+
+max-width: 1000px;
+
+margin: 2rem auto;
+
+padding: 2rem;
+
+background: rgba(0, 0, 0, 0.85);
+
+border-radius: 12px;
+
+box-shadow: 0 0 20px rgba(255,71,87,0.6);
+
+text-align: center;
+
+color: #f5f5f5;
+
+}
+
+.about img {
+
+max-width: 280px;
+
+border-radius: 12px;
+
+margin: 1.5rem 0;
+
+box-shadow: 0 0 15px rgba(255,71,87,0.8);
+
+border: 2px solid #ff4757;
+
+}
+
+.about h2 {
+
+font-size: 2.2rem;
+
+margin-bottom: 1rem;
+
+color: #FFD700;
+
+text-shadow: 0 0 12px rgba(255,215,0,0.8);
+
+}
+
+.about p {
+
+font-size: 1.05rem;
+
+line-height: 1.7;
+
+margin-bottom: 1.3rem;
+
+text-shadow: 0 0 6px rgba(0,0,0,0.9);
+
+}
+
+
+/* === YOUTUBE SECTION === */
+
+.youtube-section {
+
+margin-top: 2rem;
+
+text-align: center;
+
+}
+
+.youtube-section a {
+
+text-decoration: none;
+
+color: #fff;
+
+display: inline-block;
+
+transition: 0.3s;
+
+}
+
+.youtube-section a:hover h3 {
+
+color: #ff4757;
+
+text-shadow: 0 0 8px #ff4757;
+
+}
+
+.youtube-section h3 {
+
+font-size: 2rem;
+
+margin-bottom: 10px;
+
+color: #FFD700;
+
+text-shadow: 0 0 10px rgba(255,215,0,0.7);
+
+}
+
+.youtube-section img {
+
+width: 150px;
+
+border-radius: 12px;
+
+border: 2px solid #ff4757;
+
+box-shadow: 0 0 15px #ff4757;
+
+transition: 0.3s;
+
+}
+
+.youtube-section img:hover {
+
+transform: scale(1.05);
+
+box-shadow: 0 0 25px #ff6b81;
+
+}
+
+
+/* === FOOTER === */
+
+footer {
+
+text-align:center;
+
+padding:15px;
+
+background:rgba(0,0,0,0.7);
+
+margin-top:2rem;
+
+font-size:0.9rem;
+
+}
+
+footer .social-links img {
+
+height:18px;
+
+vertical-align:middle;
+
+margin-right:6px;
+
+filter:invert(1);
+
+}
+
+footer .social-links a {
+
+color:#fff;
+
+text-decoration:none;
+
+margin:0 8px;
+
+}
+
+footer .social-links a:hover { color:#ff4757; }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+
+<img src="LOGO.jpg" alt="Logo"> Street Fighters
+
+</h1>
+
+<span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="about.html" class="active">About</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="register.html">Register</a>
+
+<a href="members.html">Members</a>
+
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="community.html">Community</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="login.html" class="login-link">Login</a> <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</nav>
+
+</header>
+
+
+<section class="about">
+
+<h2>About Us</h2>
+
+<img src="LOGO.jpg" alt="Street Fighters Logo">
+
+<p><b>Street-Fighters</b> is an eSports tournament platform created by passionate gamers for gamers. 
+
+Our mission is to provide fair, transparent, and thrilling Free Fire tournaments for everyone in India.</p>
+
+
+<img src="FNDRS.jpg" alt="Founders Photo">
+
+<p><b>We are gamers too!</b> Having experienced the thrill of competitive matches ourselves, 
+
+we know what it takes to build an honest, exciting, and player-first gaming community.</p>
+
+
+<p>Our journey started with a simple idea: <b>“Let’s create a tournament that feels like home for every gamer.”</b> 
+
+Today, Street-Fighters is more than just an event — it’s a growing family of players, fans, and future champions.</p>
+
+
+<div class="youtube-section">
+
+<a href="https://youtube.com/@sf-tournaments?si=GCXtbpCi9dBMbn4t" target="_blank">
+
+<h3>YOUTUBE</h3>
+
+<img src="LOGO.jpg" alt="YouTube Logo">
+
+</a>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2025 Street-Fighters | Designed by Anmol Sinha</p>
+
+<div class="social-links">
+
+<a href="https://www.instagram.com/freefire_street_tournaments" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"> Instagram
+
+</a>
+
+<a href="https://www.facebook.com/share/16xUYMxFzK/" target="_blank">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"> Facebook
+
+</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu() {
+
+document.getElementById('menu').classList.toggle('active');
+
+}
+
+function toggleDarkMode() {
+
+document.body.classList.toggle('dark');
+
+}
+
+</script>
+
+</body>
+
+</html>
